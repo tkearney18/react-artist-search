@@ -9,12 +9,16 @@ class Search extends React.Component {
     }
     onTermChange(term) {
         this.setState({term})
-        this.props.onSearchChange(term)
+    }
+    onTermSubmission(event) {
+        event.preventDefault();
+        let term = this.state.term
+        this.props.onSearchSubmit(term)
     }
     render() {
         return(
             <div className="search">
-                <form>
+                <form onSubmit={event => this.onTermSubmission(event)}>
                     <span>Search: </span>
                     <input onChange={event => this.onTermChange(event.target.value)} />
                 </form>

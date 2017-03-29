@@ -4,14 +4,14 @@ import Search from './components/Search'
 
 class App extends React.Component {
 
-    handleSearchChange(term) {
+    handleSearchSubmit(term){
         console.log(term)
     }
 
     render() {
         return(
             <div className="greeting">
-                <Search onSearchChange={ this.handleSearchChange } />
+                <Search onSearchSubmit={ this.handleSearchSubmit }/>
             </div>
 
         );
