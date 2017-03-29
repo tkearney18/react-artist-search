@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
+import fetch from 'isomorphic-fetch'
+
 import Search from './components/Search'
 import RelatedArtists from './components/RelatedArtists'
 import Artist from './components/Artist'
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
+
 
 class App extends React.Component {
     constructor(props) {
