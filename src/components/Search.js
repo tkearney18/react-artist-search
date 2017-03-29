@@ -17,9 +17,9 @@ class Search extends React.Component {
     }
     render() {
         return(
-            <div className="search col-lg-4 col-lg-push-4">
+            <div className="search col-lg-6 col-lg-push-4" >
                 <form onSubmit={event => this.onTermSubmission(event)}>
-                    <span>Search: </span>
+                    <span style={{ width: 80% }}>Search: </span>
                     <input onChange={event => this.onTermChange(event.target.value)} />
                 </form>
             </div>
