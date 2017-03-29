@@ -4,8 +4,8 @@ import Artist from './Artist'
 const RelatedArtists = ({ relatedArtists }) => {
     console.log(relatedArtists)
         return(
-            <div className="row">
-                <div className="col-lg-8">
+            <div>
+                <div>
                     {relatedArtists.map( artist =>
                         <Artist key={Math.random()} artist={ artist } />)
                     }
