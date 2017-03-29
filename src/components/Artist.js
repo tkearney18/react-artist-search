@@ -1,6 +1,6 @@
 import React from 'react'
 
-let Artist = ({ artist }) => {
+const Artist = ({ artist }) => {
     return(
         <div>
             <a href={ artist.link }> <h2>{ artist.name }</h2></a>
