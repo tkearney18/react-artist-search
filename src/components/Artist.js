@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Artist = ({ artist }) => {
+const Artist = ({ artist, classes }) => {
     return(
-        <div>
+        <div className={ classes }>
             <a href={ artist.link }> <h2>{ artist.name }</h2></a>
                 <img src={ artist.image } />
                 <ul>

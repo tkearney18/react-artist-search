@@ -1,15 +1,12 @@
 import React from 'react'
 import Artist from './Artist'
 
-const RelatedArtists = ({ relatedArtists }) => {
-    console.log(relatedArtists)
+const RelatedArtists = ({ relatedArtists, classes }) => {
         return(
             <div>
-                <div>
-                    {relatedArtists.map( artist =>
-                        <Artist key={Math.random()} artist={ artist } />)
-                    }
-                </div>
+                {relatedArtists.map( artist =>
+                    <Artist key={Math.random()} artist={ artist } classes={ classes }/>)
+                }
             </div>
         )
 }
