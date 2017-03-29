@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import Search from './components/Search'
 import RelatedArtists from './components/RelatedArtists'
 import Artist from './components/Artist'
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 
 class App extends React.Component {
     constructor(props) {
@@ -44,10 +45,18 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className="greeting">
-                <Search onSearchSubmit={ this.handleSearchSubmit }/>
-                <Artist artist={this.state.searchedArtist} />
-                <RelatedArtists relatedArtists={this.state.relatedArtists} />
+            <div className="react-artist-search container">
+                <div className="row">
+                    <Search onSearchSubmit={ this.handleSearchSubmit }/>
+                </div>
+                <div className="row">
+                    <Artist artist={this.state.searchedArtist} classes="col-lg-4 col-lg-push-4" />
+                </div>
+                <div className="row">
+                    <div className="col-lg-12 ">
+                        <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col-lg-3" />
+                    </div>
+                </div>
             </div>
 
         );
