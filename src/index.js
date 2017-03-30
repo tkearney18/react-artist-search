@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 
 import Search from './components/Search'
 import RelatedArtists from './components/RelatedArtists'
@@ -12,54 +12,46 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchedArtist: {
-                    name: 'My Band 1',
-                    genres: ['genre 1','genre 2','genre 3'],
-                    image: 'http://fakeimg.pl/250x100/',
-                    link: '#'
-            },
-            relatedArtists: [
-                {
-                    name: 'Fake Band 1',
-                    genres: ['genre 1','genre 2','genre 3'],
-                    image: 'http://fakeimg.pl/250x100/',
-                    link: '#'
-                },
-                {
-                    name: 'Fake Band 2',
-                    genres: ['genre 1','genre 2','genre 3'],
-                    image: 'http://fakeimg.pl/250x100/',
-                    link: '#'
-                },
-                {
-                    name: 'Fake Band 3',
-                    genres: ['genre 1','genre 2','genre 3'],
-                    image: 'http://fakeimg.pl/250x100/',
-                    link: '#'
-                }
-            ]
+            ready: false,
+            searchedArtist: '',
+            relatedArtists: []
         }
     }
 
     handleSearchSubmit(term){
-        //this.setState({searchedArtist: term})
+    //    let results = axios.get(`https://api.spotify.com/v1/search?q=${term}&type=artist`)
+    //    .then((result) => {
+    //        return result.data.artists.items[0]
+    //    })
         console.log(term)
+        // .then((result) => {
+        //     const searchedArtist = result.data.artists.items[0]
+        //     this.setState({searchedArtist: searchedArtist})
+        //     console.log(this)
+        // })
+        //this.setState({searchedArtist: searchedArtist})
+        //console.log(searchedArtist)
+        //_this.setState({ ready: true })
     }
 
     render() {
         return(
             <div className="react-artist-search container">
                 <div className="row">
-                    <Search onSearchSubmit={ this.handleSearchSubmit }/>
+                    <Search onSearchSubmit={ this.handleSearchSubmit.bind(this) }/>
                 </div>
-                <div className="row">
-                    <Artist artist={this.state.searchedArtist} classes="col-lg-4 col-lg-push-4" />
-                </div>
-                <div className="row">
-                    <div className="col-lg-12 ">
-                        <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col-lg-3" />
+                {!this.state.ready ? <p>Search for something</p> :
+                 <div>
+                    <div className="row">
+                        <Artist artist={this.state.searchedArtist} classes="col-lg-4 col-lg-push-4" />
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-12 ">
+                            <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col-lg-3" />
+                        </div>
                     </div>
                 </div>
+                }
             </div>
 
         );
