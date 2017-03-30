@@ -19,19 +19,21 @@ class App extends React.Component {
     }
 
     handleSearchSubmit(term){
-    //    let results = axios.get(`https://api.spotify.com/v1/search?q=${term}&type=artist`)
-    //    .then((result) => {
-    //        return result.data.artists.items[0]
-    //    })
-        console.log(term)
-        // .then((result) => {
-        //     const searchedArtist = result.data.artists.items[0]
-        //     this.setState({searchedArtist: searchedArtist})
-        //     console.log(this)
-        // })
-        //this.setState({searchedArtist: searchedArtist})
-        //console.log(searchedArtist)
-        //_this.setState({ ready: true })
+       axios.get(`https://api.spotify.com/v1/search?q=${term}&type=artist`)
+       .then((result) => {
+            const searchedArtist = result.data.artists.items[0]
+            this.setState({'searchedArtist': searchedArtist})
+       })
+       .then((result) => {
+            axios.get(`https://api.spotify.com/v1/artists/${ this.state.searchedArtist.id }/related-artists`)
+            .then((results) => {
+            const relatedArtists = results.data.artists
+            this.setState({'relatedArtists': relatedArtists})
+        })
+        .then(() => {
+            this.setState({'ready': true})
+        })
+       })
     }
 
     render() {
@@ -40,14 +42,14 @@ class App extends React.Component {
                 <div className="row">
                     <Search onSearchSubmit={ this.handleSearchSubmit.bind(this) }/>
                 </div>
-                {!this.state.ready ? <p>Search for something</p> :
+                {!this.state.ready ? <span className="col-lg-4 col-lg-push-4">Search for something</span> :
                  <div>
                     <div className="row">
                         <Artist artist={this.state.searchedArtist} classes="col-lg-4 col-lg-push-4" />
                     </div>
                     <div className="row">
                         <div className="col-lg-12 ">
-                            <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col-lg-3" />
+                            <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col" />
                         </div>
                     </div>
                 </div>
