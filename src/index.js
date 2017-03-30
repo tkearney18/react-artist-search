@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 
 import Search from './components/Search'
@@ -38,20 +37,16 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className="react-artist-search container">
+            <div className="react-artist-search">
                 <div className="row">
                     <Search onSearchSubmit={ this.handleSearchSubmit.bind(this) }/>
                 </div>
-                {!this.state.ready ? <span className="col-lg-4 col-lg-push-4">Search for something</span> :
+                {!this.state.ready ? <span>Search for something</span> :
                  <div>
-                    <div className="row">
-                        <Artist artist={this.state.searchedArtist} classes="col-lg-4 col-lg-push-4" />
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12 ">
-                            <RelatedArtists relatedArtists={this.state.relatedArtists} classes="col" />
-                        </div>
-                    </div>
+                    <h3>Searched Artist</h3>
+                    <Artist artist={this.state.searchedArtist} />
+                    <h4>Related Artist</h4>
+                    <RelatedArtists relatedArtists={this.state.relatedArtists} />
                 </div>
                 }
             </div>
