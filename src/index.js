@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
 
 import Search from './components/Search'
 import RelatedArtists from './components/RelatedArtists'
