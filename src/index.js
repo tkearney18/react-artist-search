@@ -38,16 +38,22 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className="react-artist-search">
+            <div className="react-artist-search container">
                 <div className="row">
                     <Search onSearchSubmit={ this.handleSearchSubmit.bind(this) }/>
                 </div>
-                {!this.state.ready ? <span>Search for something</span> :
+                {!this.state.ready ? <div className="row"><span className="col-lg-6 col-lg-push-3">Search for something</span></div> :
                  <div>
-                    <h3>Searched Artist</h3>
-                    <Artist artist={this.state.searchedArtist} />
-                    <h4>Related Artist</h4>
-                    <RelatedArtists relatedArtists={this.state.relatedArtists} />
+                    <div className="row">
+                        <div className="col-lg-6 col-lg-push-3">
+                            <h3>Searched Artist</h3>
+                            <Artist artist={this.state.searchedArtist} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <h4>Related Artist</h4>
+                        <RelatedArtists relatedArtists={this.state.relatedArtists} />
+                    </div>
                 </div>
                 }
             </div>
